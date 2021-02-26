@@ -187,5 +187,5 @@ async def 앵무새(ctx, arg):
     await ctx.send(arg)
     
 
-bot.run('NTg5NDcxMDgxMzU0NDk0MDEy.XfJRWw.fMTsYTwslIRP_e88Kx7u5P3D_cg')
+bot.run('Token')
     
