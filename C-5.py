@@ -18,7 +18,7 @@ async def on_ready():
     print('다음 봇으로 연결됨:')
     print(bot.user.name)
     print(bot.user.id)
-    print('벨코즈버프좀')
+    print('Connected')
     serverlist = []
     memberlist = []
     for guild in bot.guilds:
