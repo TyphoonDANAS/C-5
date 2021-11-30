@@ -3,6 +3,5 @@ asyncio
 requests
 datetime
 openpyxl
-urllib.request
 beautifulsoup4
 sympy
