@@ -368,6 +368,6 @@ async def 레벨(ctx, member : discord.Member):
 """
 
         
-bot.run('NTg5NDcxMDgxMzU0NDk0MDEy.XQUJuQ.IiKiLZMCXY5iGhsfvb9iSxh-Z4E')
+bot.run('token')
 
     
