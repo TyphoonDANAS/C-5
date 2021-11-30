@@ -1,0 +1,10 @@
+discord.py
+asyncio
+random
+requests
+datetime
+openpyxl
+sys
+urllib.request
+beautifulsoup4
+sympy
