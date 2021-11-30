@@ -367,7 +367,7 @@ async def 레벨(ctx, member : discord.Member):
         i += 1
 """
 
-        
-bot.run('token')
+access_token = os.environ["BOT_TOKEN"]       
+bot.run(access_token)
 
     
