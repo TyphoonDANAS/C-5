@@ -88,6 +88,21 @@ async def 버전(ctx):
     consequence = discord.Embed(title = 'C-5 버전: 1.6.2', description = 'Typhoon Code: Danas', color = (0xFF6060))
     await ctx.send(embed = consequence)
 
+@bot.command("정보")
+async def 정보(ctx,user:discord.Member=None):
+    embed = discord.Embed(color=0xff6060, timestamp = ctx.message.created_at)
+
+    embed.set_author(name=f"C-5 사용자 정보 - {user}"),
+    embed.set_thumbnail(url=user.avatar_url),
+    embed.set_footer(text=f'{ctx.author}이 요청함', icon_url=ctx.author.avatar_url)
+
+    embed.add_field(name="ID", value=user.id,inline=False)
+    embed.add_field(name="닉네임", value=user.display_name, inline=False)
+    embed.add_field(name="계정 생성", value=user.created_at, inline=False)
+    embed.add_field(name="서버 참가", value=user.joined_at, inline=False)
+    embed.add_field(name="봇 여부", value=user.bot, inline=False)
+    await ctx.send(embed=embed)
+
 @bot.command("삭제")
 async def 삭제(ctx, amount : int):
     if ctx.author.id == 416226495640502273:
