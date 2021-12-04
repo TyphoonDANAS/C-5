@@ -1,4 +1,4 @@
-nextcord
+discord
 asyncio
 requests
 datetime

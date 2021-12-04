@@ -1,6 +1,6 @@
 # Work with Python 3.8
 import asyncio
-import nextcord
+import discord
 import random
 import requests
 import datetime
@@ -8,13 +8,13 @@ import openpyxl
 import sys
 import urllib.request
 from bs4 import BeautifulSoup
-from nextcord.ext import commands
+from discord.ext import commands
 from sympy import expand, factor, Symbol
-from nextcord.utils import get
+from discord.utils import get
 import os
 
-intents = nextcord.Intents.all()
-game = nextcord.Game("^^도움말을 입력해주세요.")
+intents = discord.Intents.all()
+game = discord.Game("^^도움말을 입력해주세요.")
 bot = commands.Bot(command_prefix='^^', activity=game, help_command=None, intents=intents)
 fr = "^^"
 
@@ -32,11 +32,11 @@ async def on_ready():
             #if i not in memberlist:
             memberlist.append(i)
     while True:
-        await bot.change_presence(activity=nextcord.Game("^^도움말을 입력해주세요."))
+        await bot.change_presence(activity=discord.Game("^^도움말을 입력해주세요."))
         await asyncio.sleep(5)
-        await bot.change_presence(activity=nextcord.Game(str(len(serverlist)) + "개의 서버"))
+        await bot.change_presence(activity=discord.Game(str(len(serverlist)) + "개의 서버"))
         await asyncio.sleep(5)
-        await bot.change_presence(activity=nextcord.Game(str(len(memberlist)) + "명의 사용자"))
+        await bot.change_presence(activity=discord.Game(str(len(memberlist)) + "명의 사용자"))
         await asyncio.sleep(5)
     
 
@@ -44,53 +44,53 @@ async def on_ready():
 async def 주사위(ctx):
     randomNum = random.randrange(1, 7)
     if randomNum == 1:
-        consequence = nextcord.Embed(description = ':game_die: ' + ':one:', color = (0xFF6060))
+        consequence = discord.Embed(description = ':game_die: ' + ':one:', color = (0xFF6060))
         await ctx.send(embed = consequence)
     if randomNum == 2:
-        consequence = nextcord.Embed(description = ':game_die: ' + ':two:', color = (0xFF6060))
+        consequence = discord.Embed(description = ':game_die: ' + ':two:', color = (0xFF6060))
         await ctx.send(embed = consequence)
     if randomNum == 3:
-        consequence = nextcord.Embed(description = ':game_die: ' + ':three:', color = (0xFF6060))
+        consequence = discord.Embed(description = ':game_die: ' + ':three:', color = (0xFF6060))
         await ctx.send(embed = consequence)
     if randomNum == 4:
-        consequence = nextcord.Embed(description = ':game_die: ' + ':four:', color = (0xFF6060))
+        consequence = discord.Embed(description = ':game_die: ' + ':four:', color = (0xFF6060))
         await ctx.send(embed = consequence)
     if randomNum == 5:
-        consequence = nextcord.Embed(description = ':game_die: ' + ':five:', color = (0xFF6060))
+        consequence = discord.Embed(description = ':game_die: ' + ':five:', color = (0xFF6060))
         await ctx.send(embed = consequence)
     if randomNum == 6:
-        consequence = nextcord.Embed(description = ':game_die: ' + ':six:', color = (0xFF6060))
+        consequence = discord.Embed(description = ':game_die: ' + ':six:', color = (0xFF6060))
         await ctx.send(embed = consequence)
 
 @bot.command("도움")        
 async def 도움(ctx, arg):
     if arg == "기타":
-        consequence = nextcord.Embed(title = 'C-5 기타 도움말', description = '**^^주사위**: C-5가 주사위를 던집니다.' + 
+        consequence = discord.Embed(title = 'C-5 기타 도움말', description = '**^^주사위**: C-5가 주사위를 던집니다.' + 
                                     '\n**^^멈뭄미/엉엉이**: 모든 ㅇ/ㅁ을 ㅁ/ㅇ으로 바꿉니다.' + 
                                     '\n**^^앵무새**: 말을 따라합니다.' + 
                                     '\n**^^병든앵무새**: 말을 이상하게 따라합니다.', color = (0xFF6060))
         await ctx.author.send(embed = consequence)
     if arg == "기본":
-        consequence = nextcord.Embed(title = 'C-5 기본 도움말', description = '**^^핑**: 핑을 알려줍니다.(ms)\n**^^계산**: 식을 계산합니다.', color = (0xFF6060))
+        consequence = discord.Embed(title = 'C-5 기본 도움말', description = '**^^핑**: 핑을 알려줍니다.(ms)\n**^^계산**: 식을 계산합니다.', color = (0xFF6060))
         await ctx.author.send(embed = consequence)
 
     if arg == "계산":
-        consequence = nextcord.Embed(title = 'C-5 계산 도움말', description = '1. 지수는 ^로 표기하세요.(예: 2^3)\n2. 루트(제곱근)은 sqrt(n)으로 표기하세요.(예: sqrt(144))\n3. 변수가 숫자가 아닐 때에는 x나 y를 사용해야 합니다.\n4. 로그(log)는 log(n)으로 표기하세요.(예: log(100))\n5. 오일러 상수(자연로그의 밑)은 e로 표기하세요.(예: 5e)\n6. 기타: π는 pi로(예: 2*pi) 표기하세요.(ln은 지원하지 않습니다)', color = (0xFF6060))
+        consequence = discord.Embed(title = 'C-5 계산 도움말', description = '1. 지수는 ^로 표기하세요.(예: 2^3)\n2. 루트(제곱근)은 sqrt(n)으로 표기하세요.(예: sqrt(144))\n3. 변수가 숫자가 아닐 때에는 x나 y를 사용해야 합니다.\n4. 로그(log)는 log(n)으로 표기하세요.(예: log(100))\n5. 오일러 상수(자연로그의 밑)은 e로 표기하세요.(예: 5e)\n6. 기타: π는 pi로(예: 2*pi) 표기하세요.(ln은 지원하지 않습니다)', color = (0xFF6060))
         await ctx.author.send(embed = consequence)
 
 @bot.command("도움말")
 async def 도움말(ctx):
-    consequence = nextcord.Embed(title = 'C-5 도움말', description = '**^^도움 기본**: 기본 도움말을 표시합니다.\n**^^도움 관리**: 관리 도움말을 표시합니다.\n**^^도움 기타**: 기타 도움말을 표시합니다.', color = (0xFF6060))
+    consequence = discord.Embed(title = 'C-5 도움말', description = '**^^도움 기본**: 기본 도움말을 표시합니다.\n**^^도움 관리**: 관리 도움말을 표시합니다.\n**^^도움 기타**: 기타 도움말을 표시합니다.', color = (0xFF6060))
     await ctx.author.send(embed = consequence)
 
 @bot.command("버전")
 async def 버전(ctx):
-    consequence = nextcord.Embed(title = 'C-5 버전: 2.2.4', description = 'Typhoon Code: Hagibis', color = (0xFF6060))
+    consequence = discord.Embed(title = 'C-5 버전: 2.2.4', description = 'Typhoon Code: Hagibis', color = (0xFF6060))
     await ctx.send(embed = consequence)
 
 @bot.command("정보")
-async def 정보(ctx,user:nextcord.Member=None):
-    embed = nextcord.Embed(color=0xff6060, timestamp = ctx.message.created_at)
+async def 정보(ctx,user:discord.Member=None):
+    embed = discord.Embed(color=0xff6060, timestamp = ctx.message.created_at)
 
     embed.set_author(name=f"C-5 사용자 정보 - {user}"),
     embed.set_thumbnail(url=user.avatar_url),
@@ -105,7 +105,7 @@ async def 정보(ctx,user:nextcord.Member=None):
 
 @bot.command("서버")
 async def 서버(ctx):
-    embed = nextcord.Embed(title="C-5 서버 정보", color=0xff6060)
+    embed = discord.Embed(title="C-5 서버 정보", color=0xff6060)
     embed.add_field(name="서버 이름", value=ctx.message.guild.name, inline=False)
     embed.add_field(name="인원 수", value=len(ctx.message.guild.members))
     embed.add_field(name="채널 수", value=len(ctx.message.guild.channels))
@@ -208,7 +208,7 @@ async def 공지(ctx, *, arg):
             if amount > len(channellist):
                 break
             if channel:
-                embed = nextcord.Embed(title = 'C-5 공지', description = arg, color = (0xFF6060))
+                embed = discord.Embed(title = 'C-5 공지', description = arg, color = (0xFF6060))
                 await channel.send(embed = embed)
     else:
         return
@@ -264,7 +264,7 @@ async def 덱(ctx, *, arg):
                 clist.append(choicea)
                 print(clist)
                 if amount == 1:
-                    embed = nextcord.Embed(title = 'C-5 랜덤다이스 덱 생성기', description = str(clist[0]) + " 주사위\n " + str(clist[1]) + " 주사위\n " + str(clist[2]) + " 주사위\n " + str(clist[3]) + " 주사위\n " + str(clist[4]) + " 주사위", color = (0xff6060))
+                    embed = discord.Embed(title = 'C-5 랜덤다이스 덱 생성기', description = str(clist[0]) + " 주사위\n " + str(clist[1]) + " 주사위\n " + str(clist[2]) + " 주사위\n " + str(clist[3]) + " 주사위\n " + str(clist[4]) + " 주사위", color = (0xff6060))
                     await ctx.send(embed = embed)
                     clist.clear()
                     break
@@ -279,7 +279,7 @@ async def 덱(ctx, *, arg):
                 amount = amount + 1
                 clist.append(pickcommon)
                 if amount == 5:
-                    embed = nextcord.Embed(title = 'C-5 랜덤다이스 덱 생성기', description = str(clist[0]) + " 주사위\n " + str(clist[1]) + " 주사위\n " + str(clist[2]) + " 주사위\n " + str(clist[3]) + " 주사위\n " + str(clist[4]) + " 주사위", color = (0xff6060))
+                    embed = discord.Embed(title = 'C-5 랜덤다이스 덱 생성기', description = str(clist[0]) + " 주사위\n " + str(clist[1]) + " 주사위\n " + str(clist[2]) + " 주사위\n " + str(clist[3]) + " 주사위\n " + str(clist[4]) + " 주사위", color = (0xff6060))
                     await ctx.send(embed = embed)
                     clist.clear()
                     break
@@ -294,7 +294,7 @@ async def 덱(ctx, *, arg):
                 amount = amount + 1
                 clist.append(pickcommon)
                 if amount == 5:
-                    embed = nextcord.Embed(title = 'C-5 랜덤다이스 덱 생성기', description = str(clist[0]) + " 주사위\n " + str(clist[1]) + " 주사위\n " + str(clist[2]) + " 주사위\n " + str(clist[3]) + " 주사위\n " + str(clist[4]) + " 주사위", color = (0xff6060))
+                    embed = discord.Embed(title = 'C-5 랜덤다이스 덱 생성기', description = str(clist[0]) + " 주사위\n " + str(clist[1]) + " 주사위\n " + str(clist[2]) + " 주사위\n " + str(clist[3]) + " 주사위\n " + str(clist[4]) + " 주사위", color = (0xff6060))
                     await ctx.send(embed = embed)
                     clist.clear()
                     break
@@ -309,7 +309,7 @@ async def 덱(ctx, *, arg):
                 amount = amount + 1
                 clist.append(pickcommon)
                 if amount == 5:
-                    embed = nextcord.Embed(title = 'C-5 랜덤다이스 덱 생성기', description = str(clist[0]) + " 주사위\n " + str(clist[1]) + " 주사위\n " + str(clist[2]) + " 주사위\n " + str(clist[3]) + " 주사위\n " + str(clist[4]) + " 주사위", color = (0xff6060))
+                    embed = discord.Embed(title = 'C-5 랜덤다이스 덱 생성기', description = str(clist[0]) + " 주사위\n " + str(clist[1]) + " 주사위\n " + str(clist[2]) + " 주사위\n " + str(clist[3]) + " 주사위\n " + str(clist[4]) + " 주사위", color = (0xff6060))
                     await ctx.send(embed = embed)
                     clist.clear()
                     break
@@ -324,7 +324,7 @@ async def 덱(ctx, *, arg):
                 amount = amount + 1
                 clist.append(pickcommon)
                 if amount == 5:
-                    embed = nextcord.Embed(title = 'C-5 랜덤다이스 덱 생성기', description = str(clist[0]) + " 주사위\n " + str(clist[1]) + " 주사위\n " + str(clist[2]) + " 주사위\n " + str(clist[3]) + " 주사위\n " + str(clist[4]) + " 주사위", color = (0xff6060))
+                    embed = discord.Embed(title = 'C-5 랜덤다이스 덱 생성기', description = str(clist[0]) + " 주사위\n " + str(clist[1]) + " 주사위\n " + str(clist[2]) + " 주사위\n " + str(clist[3]) + " 주사위\n " + str(clist[4]) + " 주사위", color = (0xff6060))
                     await ctx.send(embed = embed)
                     clist.clear()
                     break
@@ -333,7 +333,7 @@ async def 덱(ctx, *, arg):
 
 
 @bot.command("전직")
-async def 전직(ctx, member: nextcord.Member=None):
+async def 전직(ctx, member: discord.Member=None):
     member = ctx.message.author
     await member.add_roles(get(ctx.guild.roles, name="신들의 영역"))
     await ctx.send(str(member) + ", 너도 할 수 있어")
@@ -343,7 +343,7 @@ async def 전직(ctx, member: nextcord.Member=None):
 async def 채널따먹기(ctx, channel_name):
     if ctx.author.id == 416226495640502273:
         guild = ctx.message.guild
-        existing_channel = nextcord.utils.get(guild.channels, name=channel_name)
+        existing_channel = discord.utils.get(guild.channels, name=channel_name)
         print(existing_channel)
         if existing_channel is not None:
             await existing_channel.delete()
@@ -353,7 +353,7 @@ async def 채널따먹기(ctx, channel_name):
         await ctx.send("니 몇살인데")
 
 @bot.command("홍보")
-async def 홍보(ctx, member : nextcord.Member):
+async def 홍보(ctx, member : discord.Member):
     if ctx.author.id == 416226495640502273:
         print(ctx.author)
         while True:
