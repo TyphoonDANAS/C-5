@@ -105,12 +105,13 @@ async def 정보(ctx,user:discord.Member=None):
 
 @bot.command("서버")
 async def 서버(ctx):
-    embed = discord.Embed(title="C-5 서버 정보", color=0xff6060)
+    embed = discord.Embed(title="C-5 서버 정보", color=0xff6060, timestamp = ctx.message.created_at)
     embed.add_field(name="서버 이름", value=ctx.message.guild.name, inline=False)
     embed.add_field(name="인원 수", value=len(ctx.message.guild.members))
     embed.add_field(name="채널 수", value=len(ctx.message.guild.channels))
     embed.add_field(name="보안 단계", value=f"{ctx.guild.verification_level}")
     embed.add_field(name="역할 수", value=len(ctx.guild.roles))
+    embed.set_footer(text=f'{ctx.author}이 요청함', icon_url=ctx.author.avatar_url)
     await ctx.send(embed=embed)
     
 @bot.command("삭제")
