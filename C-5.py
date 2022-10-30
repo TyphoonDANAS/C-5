@@ -363,6 +363,62 @@ async def 홍보(ctx, member : discord.Member):
     else:
         await ctx.send("반말하지마라")
 
+@bot.command("동전뒤집기")
+async def 동전뒤집기(ctx):
+    amour = ctx.author.id
+    if(os.path.isfile("D:/C-5/NS_Bot/Coin_Toss/" + str(amour) + ".txt")):
+        f = open("D:/C-5/NS_Bot/Coin_Toss/" + str(amour) + ".txt", "r")
+        money = f.read()
+        amoney = int(money)
+        #await ctx.send("ID: " + str(amour) + "\n보유 자금: " + money)
+        coin = random.randrange(0, 2)
+        if coin == 0:
+            success = random.randrange(1, 11)
+            if success >= 10:
+                amoney += 20000
+                f = open("D:/C-5/NS_Bot/Coin_Toss/" + str(amour) + ".txt", "w")
+                f.write(str(amoney))
+                f.close()
+                await ctx.send("대성공! + 20000 NS\n보유 자금: " + str(amoney) + " NS")
+            else:
+                amoney += 5000
+                f = open("D:/C-5/NS_Bot/Coin_Toss/" + str(amour) + ".txt", "w")
+                f.write(str(amoney))
+                f.close()
+                await ctx.send("성공! + 5000 NS\n보유 자금: " + str(amoney) + " NS")
+        if coin == 1:
+            fail = random.randrange(1, 501)
+            if fail >= 500:
+                if amoney >= 100000:
+                    amoney = 50000
+                    f = open("D:/C-5/NS_Bot/Coin_Toss/" + str(amour) + ".txt", "w")
+                    f.write(str(amoney))
+                    f.close()
+                else:
+                    amoney -= 50000
+                    f = open("D:/C-5/NS_Bot/Coin_Toss/" + str(amour) + ".txt", "w")
+                    f.write(str(amoney))
+                    f.close()
+                await ctx.send("대실패!\n보유 자금: " + str(amoney) + " NS")
+            else:
+                amoney -= 7000
+                f = open("D:/C-5/NS_Bot/Coin_Toss/" + str(amour) + ".txt", "w")
+                f.write(str(amoney))
+                f.close()
+                await ctx.send("실패... - 7000 NS\n보유 자금: " + str(amoney) + " NS")
+    else:
+        await ctx.send("아직 회원이 아닙니다.\n `^^등록 동전뒤집기`를 통해 회원에 등록해주세요.")
+
+@bot.command("등록")
+async def 등록(ctx, *, arg):
+    amour = ctx.author.id
+    if arg == "동전뒤집기":
+        f = open("D:/C-5/NS_Bot/Coin_Toss/" + str(amour) + ".txt", "w")
+        f.write("10000")
+        f.close()
+        await ctx.send("회원 등록이 완료되었습니다.\n기본 자금 `10000`NS가 지급되었습니다.")
+    else:
+        await ctx.send("존재하지 않는 항목입니다.")
 
 
 """
