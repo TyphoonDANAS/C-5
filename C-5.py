@@ -227,6 +227,10 @@ async def 반복(ctx, *, arg):
     for i in range(hh):
         await ctx.send(wd)
 
+@bot.command("홍보")
+async def 홍보(ctx, member : discord.Member):
+    await ctx.send(member.mention + "봇을 초대하고 싶다면: https://discord.com/api/oauth2/authorize?client_id=589471081354494012&permissions=8&scope=bot 으로")
+
 @bot.command("동전뒤집기")
 async def 동전뒤집기(ctx):
     amour = ctx.author.id
