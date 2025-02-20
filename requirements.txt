@@ -1,7 +1,0 @@
-discord.py
-asyncio
-requests
-datetime
-openpyxl
-beautifulsoup4
-sympy

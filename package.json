@@ -1,0 +1,8 @@
+{
+    "dependencies": {
+        "algebra.js": "^0.2.6",
+        "discord.js": "^12.5.3",
+        "hangul-js": "^0.2.6",
+        "mathjs": "^14.2.1"
+    }
+}
